@@ -1,8 +1,6 @@
 package upe.ecomp.ed.questao6;
 
-import upe.ecomp.ed.questao2.ListaEstatica;
-
-public class ListaDuplamenteEncadeada {
+public class ListaDuplamenteEncadeada implements TADListaDuplamenteEncadeada {
 
 	No inicio;
 	int qtd = 0;
