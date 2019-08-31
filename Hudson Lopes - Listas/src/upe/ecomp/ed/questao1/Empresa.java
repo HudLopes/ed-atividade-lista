@@ -1,28 +1,70 @@
 package upe.ecomp.ed.questao1;
 
-public class Empresa {
+public class Empresa implements TADEmpresa {
 
-	String nome;
-	Cliente cliente;
+	private String nomeEmpresa;
+	private No listaClientes;
 
-	Empresa(String nome, Cliente cliente) {
-		this.nome = nome;
-		this.cliente = cliente;
+	Empresa(String nome) {
+		this.nomeEmpresa = nome;
 	}
 
-	public String getNome() {
-		return nome;
+	public void adicionarCliente(Cliente cliente) throws UnicidadeCPFException {
+		No novo = new No(cliente);
+		if (isEmpty()) {
+			listaClientes = novo;
+		} else {
+			if (listaClientes.getCliente().getCpf() == cliente.cpf) {
+				throw new UnicidadeCPFException(cliente.nome);
+			} else {
+				No tmp = listaClientes;
+				while (tmp.getProx() != null) {
+					if (tmp.getCliente().getCpf() == cliente.cpf) {
+						throw new UnicidadeCPFException(cliente.nome);
+					}
+					tmp = tmp.getProx();
+				}
+				tmp.setProx(novo);
+			}
+		}
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public boolean isCliente(Cliente cliente) {
+		boolean existe = false;
+
+		No tmp = listaClientes;
+		while (tmp != null) {
+			if (tmp.getCliente() == cliente) {
+				existe = true;
+				break;
+			}
+			tmp = tmp.getProx();
+		}
+		return existe;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public int quantidadeClientes() {
+		int quantidade = 0;
+		No tmp = listaClientes;
+
+		while (tmp != null) {
+			quantidade++;
+			tmp = tmp.getProx();
+		}
+		
+		return quantidade;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void listarClientes() {
+		No tmp = listaClientes;
+		while (tmp != null) {
+			System.out.println("Nome: " + tmp.getCliente().getNome() + "\nCPF: " + tmp.getCliente().getCpf());
+			tmp = tmp.getProx();
+		}
 	}
+
+	public boolean isEmpty() {
+		return listaClientes == null;
+	}
+
 }
