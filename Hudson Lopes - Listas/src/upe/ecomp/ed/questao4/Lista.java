@@ -30,10 +30,11 @@ public class Lista {
 	public void inverterLista() {
 		Lista invertida = new Lista();
 		No temp = inicio;
-		while(temp != null) {
+		while(temp.getProximo() != null) {
 			temp = temp.getProximo();
-			invertida.addNo(temp);
 		}
+		//ultimo elemento
+		//invertida.add(temp);
 	}
 
 	public void print() {
@@ -43,16 +44,5 @@ public class Lista {
 			tmp = tmp.getProximo();
 		}
 	}
-	
-	public void addNo(No novo) {
-		if(isEmpty()) {
-			this.inicio = novo;
-		} else {
-			No aux = inicio;
-			while (aux.getProximo() != null) {
-				aux = aux.getProximo();
-			}
-			aux.setProximo(novo);
-		}
-	}
+
 }

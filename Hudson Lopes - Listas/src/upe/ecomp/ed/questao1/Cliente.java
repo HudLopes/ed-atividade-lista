@@ -2,8 +2,8 @@ package upe.ecomp.ed.questao1;
 
 public class Cliente {
 
-	String nome;
-	String cpf;
+	private String nome;
+	private String cpf;
 	
 	Cliente(String nome, String cpf){
 		this.nome = nome;

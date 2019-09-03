@@ -14,13 +14,13 @@ public class Empresa implements TADEmpresa {
 		if (isEmpty()) {
 			listaClientes = novo;
 		} else {
-			if (listaClientes.getCliente().getCpf() == cliente.cpf) {
-				throw new UnicidadeCPFException(cliente.nome);
+			if (listaClientes.getCliente().getCpf() == cliente.getCpf()) {
+				throw new UnicidadeCPFException(cliente.getNome());
 			} else {
 				No tmp = listaClientes;
 				while (tmp.getProx() != null) {
-					if (tmp.getCliente().getCpf() == cliente.cpf) {
-						throw new UnicidadeCPFException(cliente.nome);
+					if (tmp.getCliente().getCpf() == cliente.getCpf()) {
+						throw new UnicidadeCPFException(cliente.getNome());
 					}
 					tmp = tmp.getProx();
 				}

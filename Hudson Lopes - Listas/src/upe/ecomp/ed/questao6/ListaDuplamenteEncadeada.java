@@ -2,8 +2,8 @@ package upe.ecomp.ed.questao6;
 
 public class ListaDuplamenteEncadeada implements TADListaDuplamenteEncadeada {
 
-	No inicio;
-	int qtd = 0;
+	private No inicio;
+	private int qtd = 0;
 
 	public void add(String elemento) {
 		No novo = new No();
